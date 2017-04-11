@@ -1,9 +1,9 @@
 import React from 'react';
-import { Col, Jumbotron, Grid } from 'react-bootstrap';
+import { Jumbotron, Grid,  } from 'react-bootstrap';
 import { inject, observer } from 'mobx-react';
-import { Form, FormGroup, Media } from "reactstrap";
+import { Card, CardImg, Form, FormGroup } from "reactstrap";
+import { Flex } from 'reflexbox';
 import Navigation from './Navigation';
-import { Flex, Box } from 'reflexbox';
 
 class Account extends React.Component {
   constructor() {
@@ -13,7 +13,9 @@ class Account extends React.Component {
       description: "",
       condition: "",
       url: "",
-      owner: ""
+      owner: "",
+      bio: "",
+      profile: ""
     };
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -24,6 +26,10 @@ class Account extends React.Component {
 
   handleCategoryChange(e) {
     this.setState({category: e.target.value});
+  }
+
+  handleNewProfileChange(e) {
+    this.setState({profile: e.target.value});
   }
 
   handleDescriptionChange(e) {
@@ -44,71 +50,70 @@ class Account extends React.Component {
     this.props.itemStore.newItem(item);
   }
 
-
   render() {
     return(
-      <div>
-        <Navigation/>
-        {this.props.children}
-        <div style={{paddingTop:"200px"}}>
-        <Grid>
-          <Jumbotron style={{backgroundColor:"transparent"}}>
-            <Flex align="left">
-              <Box>
-                <Media>
-                  <Media style={{width:"2%", paddingRight:"20"}} object src="../images/profile.png"
-                  alt="Profile Picture"/>
-                  <Media body>
-                    <Media heading>
-                      <div>
-                        <h2>Name:</h2><h3>{this.props.userStore.name}</h3>
-                      </div>
-                    </Media>
-                    <h2>Neighborhood:</h2><h3>{this.props.userStore.neighborhood}</h3>
-                  </Media>
-                </Media>
-              </Box>
-            </Flex>
-          </Jumbotron>
-          </Grid>
-        </div>
-
-          <br/>
-
         <div>
-          <Form>
-            <Col sm={8}>
-              <legend>Add Your Items to Loan!!</legend>
+          <Navigation/>
+          <div id="loginDiv">
+            <Grid>
+              <Flex align="center" justify="left">
+                <Card block id="accountCard">
+                  <CardImg top width="100%" src={this.props.userStore.profile} id="cardImg" />
+                  <Card id="innerCard" >
+                    <h1 id="cardTitle" >{this.props.userStore.name}</h1>
+                    <h3 id="cardSubtitle">{this.props.userStore.neighborhood}</h3>
+                    <p>{this.props.userStore.bio}</p>
+                  </Card>
+                </Card>
+              </Flex>
+              <Flex align="center" justify="center">
+                <Jumbotron id="loginJumbo">
+                  <Flex align="center" justify="center">
+                    <Form id="loginForm">
+                      <span id="spanLogin">{this.state.loginMsg == "" ?
+                       "Please Sign In!":
+                      this.state.loginMsg}</span>
+                    <legend>Add Your Items to Lend</legend>
 
-              <FormGroup>
-                <input onChange={this.handleCategoryChange} value={this.state.category}
-                className="form-control" id="category" placeholder="category"/>
-              </FormGroup>
+                    <FormGroup>
+                      <input onChange={this.handleCategoryChange} value={this.state.category}
+                      className="form-control" id="category" placeholder="category"/>
+                      <medium>Power Tools, Gardening, Kitchen, Recreation, Hobby</medium>
+                    </FormGroup>
 
-              <FormGroup>
-                <input onChange={this.handleDescriptionChange} value={this.state.description}
-                className="form-control" id="description" placeholder="description"/>
-              </FormGroup>
+                    <FormGroup>
+                      <label htmlFor="description"/>
+                      <textarea onChange={this.handleDescriptionChange}
+                      value={this.state.description}
+                      placeholder="description" className="form-control"
+                      id="description" rows="5"/>
+                    </FormGroup>
 
-              <FormGroup>
-                <input onChange={this.handleConditionChange} value={this.state.condition}
-                className="form-control" id="condition" placeholder="condition"/>
-              </FormGroup>
+                    <FormGroup>
+                      <input onChange={this.handleConditionChange} value={this.state.condition}
+                      className="form-control" id="condition" placeholder="condition"/>
+                    </FormGroup>
 
-              <FormGroup>
-                <input onChange={this.handleUrlChange} value={this.state.url}
-                  className="form-control"
-                id="url" placeholder="url"/>
-              </FormGroup>
+                    <FormGroup>
+                      <input onChange={this.handleUrlChange} value={this.state.url}
+                        className="form-control"
+                      id="url" placeholder="url"/>
+                    </FormGroup>
 
-              <button onClick={this.handleNewItem} type="submit"
-                className="btn btn-primary">Add Your Item!
-              </button>
-            </Col>
-          </Form>
+                    <button onClick={this.handleNewItem} type="submit"
+                      className="btn btn-primary">Add Your Item!
+                    </button>
+
+                </Form>
+              </Flex>
+            </Jumbotron>
+          </Flex>
+        </Grid>
+        <div id="createAccountMainImage">
+          <img id="createAccountImgPlease" src="../images/blackcollage.jpg"/>
         </div>
       </div>
-
+    </div>
     );
   }
 }

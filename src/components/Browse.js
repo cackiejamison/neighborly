@@ -50,7 +50,8 @@ class Browse extends React.Component {
   }
 
 
-  searchItems() {
+  searchItems(event) {
+    event.preventDefault();
     this.props.itemStore.filteredItems=[];
     this.props.itemStore.items.forEach((item) => {
       if (item.category.indexOf(this.state.filterText) !== -1 ||
@@ -90,12 +91,12 @@ class Browse extends React.Component {
                   </Flex>
                 </div>
 
-                  <Form>
+                  <Form onSubmit={this.searchItems}>
                     <Flex align="center" justify="center">
                       <FormGroup  style={{width: "65%"}}>
                         <Label id="Search">SEARCH</Label>
                         <Input onChange={this.handleFilterTextInputChange}
-                        type="text"    state="success"
+                        type="text" state="success"
                         placeholder="Power Tools, Gardening, Hobby, Recreation, Kitchen"
                         value={this.state.filterText} />
                       </FormGroup>
@@ -103,8 +104,8 @@ class Browse extends React.Component {
 
                   <div>
                     <Flex align="start" justify="center">
-                      <Button onClick={this.searchItems}
-                       className="btn btn-primary btn-lg" id="searchBtn">Search
+                      <Button onSubmit={this.searchItems}
+                        type="submit" className="btn btn-primary btn-lg" id="searchBtn">Search
                       </Button>
                     </Flex>
                   </div>

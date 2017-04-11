@@ -14,7 +14,9 @@ var UserSchema = new _mongoose2.default.Schema({
   email: String,
   password: String,
   name: String,
-  neighborhood: String
+  neighborhood: String,
+  profile: String,
+  bio: String
 
 });
 

@@ -66,7 +66,9 @@ router.route('/user')
     user.email = req.body.email;
     user.neighborhood = req.body.neighborhood;
     user.password = hash.generate(req.body.password);
-    user.url = req.body.url;
+    user.profile = req.body.profile;
+    user.bio = req.body.bio;
+
 
     user.save(function(err, user) {
       if(err) {
@@ -90,8 +92,7 @@ router.route('/user')
 
 
 router.post('/authenticate', function(req, res, next) {
-  console.log('Authenticating....', req.body.email);
-        // find the user
+          // find the user
   User.findOne({
     email: req.body.email
   }, function(err, user) {
@@ -120,7 +121,9 @@ router.post('/authenticate', function(req, res, next) {
           name: user.name,
           email: user.email,
           neighborhood: user.neighborhood,
-          url: user.neighborhood
+          bio: user.bio,
+          profile: user.profile
+
         });
       }
 

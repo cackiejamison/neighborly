@@ -45,6 +45,7 @@
     "react-addons-transition-group": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
+    "react-dropzone": "^2.2.4",
     "react-facebook-login": "^3.5.0",
     "react-headroom": "^2.1.4",
     "react-media": "^1.5.1",

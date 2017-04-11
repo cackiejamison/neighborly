@@ -5,12 +5,14 @@ export default {
   devtool: 'inline-source-map',
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
+    'webpack-hot-middleware/client?reload=true', //note that it reloads the page 
+    //if hot module reloading fails.
     path.resolve(__dirname, 'src/index')
   ],
   target: 'web',
   output: {
-    path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
+    path: __dirname + '/dist', // Note: Physical files are only output by
+    //the production build task `npm run build`.
     publicPath: '/',
     filename: 'bundle.js'
   },

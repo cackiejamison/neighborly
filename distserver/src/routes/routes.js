@@ -83,6 +83,8 @@ router.route('/user').post(function (req, res, next) {
   user.email = req.body.email;
   user.neighborhood = req.body.neighborhood;
   user.password = _passwordHash2.default.generate(req.body.password);
+  user.profile = req.body.profile;
+  user.bio = req.body.bio;
 
   user.save(function (err, user) {
     if (err) {
@@ -92,11 +94,11 @@ router.route('/user').post(function (req, res, next) {
     }
   });
 }).get(function (req, res, next) {
-  _userSchema2.default.find().exec(function (err, user) {
+  _userSchema2.default.find().exec(function (err, users) {
     if (err) {
       next(err);
     } else {
-      res.json({ name: user.name, id: user._id, neighborhood: user.neighborhood });
+      res.json(users);
     }
   });
 });
@@ -131,7 +133,9 @@ router.post('/authenticate', function (req, res, next) {
           id: user._id,
           name: user.name,
           email: user.email,
-          neighborhood: user.neighborhood
+          neighborhood: user.neighborhood,
+          bio: user.bio,
+          profile: user.profile
         });
       }
     }

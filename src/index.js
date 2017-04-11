@@ -21,7 +21,7 @@ render((
     <Router history={browserHistory}>
       <Route path="/" component={Main}/>
         <Route path="/Login" component={Login}/>
-        <Route path="/CreateAccount" component={CreateAccount}/>
+        <Route path="/NewUser" component={CreateAccount}/>
         <Route path="/Browse" component={Browse}/>
         <Route path="/Neighbors" component={Neighbors}/>
         <Route path="/Account" component={Account}/>

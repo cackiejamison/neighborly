@@ -20,7 +20,6 @@ class Neighbors extends React.Component {
     fetch('/user')
       .then(function(result) {return result.json();})
       .then(users => {
-        console.log(users);
         this.setState({users:users});
       }
     );
@@ -34,22 +33,20 @@ class Neighbors extends React.Component {
           <Navigation/>
         </div>
 
-        <div>
-          <div style={{paddingTop:"200px"}}>
-            <Grid>
-              <Jumbotron style={{ backgroundColor: '#D1D5D8' }}>
-                <CardColumns>
-                  <NeighborsList users={this.state.users}/>
-                </CardColumns>
-              </Jumbotron>
-            </Grid>
-          </div>
+
+        <div style={{paddingTop:"200px"}}>
+          <Grid>
+            <Jumbotron style={{ backgroundColor: '#D1D5D8'}}>
+              <CardColumns>
+                <NeighborsList users={this.state.users}/>
+              </CardColumns>
+            </Jumbotron>
+          </Grid>
         </div>
       </div>
     );
   }
 }
-
 
 Neighbors.propTypes = {
   userStore: React.PropTypes.object,

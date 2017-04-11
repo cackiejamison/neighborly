@@ -2,7 +2,6 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Jumbotron, Button, Grid } from 'react-bootstrap';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
-import FacebookLogin from 'react-facebook-login';
 import '../../public/style.css';
 import { Link } from 'react-router';
 import { Flex, Box } from 'reflexbox';
@@ -96,15 +95,6 @@ class Login extends React.Component {
                   </Form>
                 </Flex>
                 <br/>
-                <div style={{textAlign: "center"}}>
-                  <FacebookLogin
-                  clientID="430615593948853"
-                  autoLoad="true"
-                  fields="name,email,picture"
-                  callback={this.responseFacebook}
-                  icon=""
-                  textButton = "Login with Facebook"/>
-                </div>
               </Jumbotron>
             </Flex>
           </Grid>
