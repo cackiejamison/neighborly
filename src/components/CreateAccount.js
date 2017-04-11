@@ -12,13 +12,15 @@ class CreateAccount extends React.Component {
       loginMsg: "",
       neighborhood: "",
       name: "",
-      owner: ""
+      owner: "",
+      url: ""
     };
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleNewUser = this.handleNewUser.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleNeighborhoodChange = this.handleNeighborhoodChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleUrlChange = this.handleUrlChange.bind(this);
   }
 
   handlePasswordChange(e) {
@@ -37,11 +39,15 @@ class CreateAccount extends React.Component {
     this.setState({name: e.target.value});
   }
 
+  handleUrlChange(e) {
+    this.setState({url: e.target.value});
+  }
+
   handleNewUser(event) {
     event.preventDefault();
     this.props.userStore.NewUser(this.state.email, this.state.password, this.state.name,
-      this.state.neighborhood, this.state.owner);
-    this.setState({ password: "", email: "", name: "", neighborhood: "", owner: ""});
+      this.state.neighborhood, this.state.url, this.state.owner);
+    this.setState({ password: "", email: "", name: "", neighborhood: "", owner: "", url: ""});
   }
 
   render() {
@@ -69,6 +75,11 @@ class CreateAccount extends React.Component {
             <div className="form-group">
               <input onChange={this.handlePasswordChange} value={this.state.password}
               type="password" className="form-control" id="password" placeholder="password"/>
+            </div>
+
+            <div className="form-group">
+              <input onChange={this.handleUrlChange} value={this.state.url} type="text"
+              className="form-control" id="url" placeholder="profile picture"/>
             </div>
 
             <button

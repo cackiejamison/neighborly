@@ -2,6 +2,8 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Card,  CardTitle, CardText, CardImg } from "reactstrap";
 
+
+
 NeighborsList.propTypes = {
   account: React.PropTypes.object,
   userStore: React.PropTypes.object,
@@ -18,6 +20,8 @@ function NeighborsList(props) {
           style={{ backgroundColor: '#333', borderColor: '#333', width: '100%'}}>
           <CardTitle>{user.name}</CardTitle>
           <CardText>{user.neighborhood}</CardText>
+
+
         </Card>
       </Card>
     );

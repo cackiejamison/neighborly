@@ -11,6 +11,7 @@ export default class UserStore {
       neighborhood: "",
       admin: false,
       email: "",
+      url: "",
       loginMsg: "",
       loggedInUser: false,
       failedLogin: false,
@@ -20,13 +21,14 @@ export default class UserStore {
     this.LoginUser = this.LoginUser.bind(this);
     this.NewUser = this.NewUser.bind(this);
     this.setUsers = this.setUsers.bind(this);
+    this.facebookLoginUser = this.facebookLoginUser.bind(this);
   }
 
   setUsers(users) {
     this.users = users;
   }
 
-  NewUser(email, password, name, neighborhood) {
+  NewUser(email, password, name, neighborhood, url) {
     fetch('/user', {
       method: 'POST',
       headers: {
@@ -37,7 +39,8 @@ export default class UserStore {
         name: name,
         email: email,
         password: password,
-        neighborhood: neighborhood
+        neighborhood: neighborhood,
+        url: url,
       })
     })
     .then(function(){
@@ -69,6 +72,9 @@ export default class UserStore {
         this.neighborhood = loginCred.neighborhood;
         this.id = loginCred.id;
         this.token = loginCred.token;
+        this.url - loginCred.url;
+
+
       } else {
         alert("Login Failed");
         this.loggedInUser = false;
@@ -95,7 +101,7 @@ export default class UserStore {
       if(result.userfound) {
         self.LoginUser(response.name, response.id);
       } else {
-        this.newUser = true;
+        this.newUserCreated = true;
         fetch('/api/user', {
           method: 'POST',
           headers: {

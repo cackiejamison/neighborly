@@ -35,13 +35,15 @@ class Neighbors extends React.Component {
         </div>
 
         <div>
-          <Grid>
-            <Jumbotron style={{ backgroundColor: '#D1D5D8' }}>
-              <CardColumns>
-                <NeighborsList users={this.state.users}/>
-              </CardColumns>
-            </Jumbotron>
-          </Grid>
+          <div style={{paddingTop:"200px"}}>
+            <Grid>
+              <Jumbotron style={{ backgroundColor: '#D1D5D8' }}>
+                <CardColumns>
+                  <NeighborsList users={this.state.users}/>
+                </CardColumns>
+              </Jumbotron>
+            </Grid>
+          </div>
         </div>
       </div>
     );

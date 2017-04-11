@@ -66,6 +66,7 @@ router.route('/user')
     user.email = req.body.email;
     user.neighborhood = req.body.neighborhood;
     user.password = hash.generate(req.body.password);
+    user.url = req.body.url;
 
     user.save(function(err, user) {
       if(err) {
@@ -118,7 +119,8 @@ router.post('/authenticate', function(req, res, next) {
           id: user._id,
           name: user.name,
           email: user.email,
-          neighborhood: user.neighborhood
+          neighborhood: user.neighborhood,
+          url: user.neighborhood
         });
       }
 

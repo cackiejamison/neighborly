@@ -89,7 +89,7 @@ class Login extends React.Component {
                         className="btn btn-primary">Sign In</Button></Link>
                       </Box>
                       <Box auto col={2} p={2}>
-                        <Link to="/NewUser"><Button  type="submit"
+                        <Link to="/CreateAccount"><Button  type="submit"
                         className="btn btn-success">New User?</Button></Link>
                       </Box>
                     </Flex>
